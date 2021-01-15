@@ -3,7 +3,7 @@ import {Provider, Portal, Button, Searchbar, Modal} from 'react-native-paper';
 import {StyleSheet, View, Dimensions} from "react-native";
 
 interface Props {
-    closeModal: any,
+    closeModal: () => void,
     visible: boolean
 }
 

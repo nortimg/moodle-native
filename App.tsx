@@ -33,7 +33,7 @@ const App = () => {
   return (
     <>
       <AppBarComponent />
-      <Text>asdasd</Text>
+      <Text>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet aut commodi expedita fugiat laboriosam maxime minus pariatur quisquam, voluptatum? Autem dolor dolorum facere facilis, magnam nisi omnis repellendus saepe tempore?</Text>
     </>
   );
 };
