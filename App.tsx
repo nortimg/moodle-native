@@ -7,39 +7,61 @@
  *
  * @format
  */
-import React from 'react';
+import React, {useState} from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
+    TouchableOpacity,
+    StyleSheet,
+    View,
+    Image,
 } from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-import {AppBarComponent} from "./src/components/AppBarComponent";
-
-declare const global: {HermesInternal: null | {}};
+import 'react-native-gesture-handler'
+import {NavigationContainer} from "@react-navigation/native";
+import {createStackNavigator} from "@react-navigation/stack";
+import {MainScreen} from "./src/screens/MainScreen";
+import getHeaderTitle from "./src/navigation/getHeaderTitle";
+import {THEME} from "./src/theme";
+import Tabs from './src/navigation/Tabs'
+declare const global: { HermesInternal: null | {} };
 
 const App = () => {
-  return (
-    <>
-      <AppBarComponent />
-      <Text>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet aut commodi expedita fugiat laboriosam maxime minus pariatur quisquam, voluptatum? Autem dolor dolorum facere facilis, magnam nisi omnis repellendus saepe tempore?</Text>
-    </>
-  );
+    const [isReady, setIsReady] = useState(true)
+
+    if (!isReady) { // Если данные с сервера не загружены будем выводить Loading Component
+        return <View>App</View>
+    }
+    const Stack = createStackNavigator();
+    return (
+            <NavigationContainer>
+                <Stack.Navigator
+                    initialRouteName={"MainScreen"}
+                    screenOptions={{
+                        headerStyle: {
+                            backgroundColor: THEME.MAIN_COLOR,
+                        },
+                        headerTintColor: '#fff',
+                    }}>
+                    <Stack.Screen
+                        name={"MainScreen"}
+                        component={Tabs}
+                        options={({route}) => ({
+                            headerTitle: getHeaderTitle(route)
+                        })}
+                    />
+                </Stack.Navigator>
+            </NavigationContainer>
+    );
 };
 
 const styles = StyleSheet.create({
-
-});
+    buttonImageIcon: {
+        width: 25,
+        height: 25,
+    },
+    buttonToucheOpacity: {
+        margin: 12,
+        marginTop: 17
+    }
+})
 
 export default App;
