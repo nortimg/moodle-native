@@ -1,10 +1,10 @@
 import React from 'react'
 import {View, Text, StyleSheet} from "react-native";
 
-export const NotificationScreen: React.FC = ({}) => {
+export const MessageScreen: React.FC = ({}) => {
     return (
         <View style={styles.center}>
-            <Text>Notification</Text>
+            <Text>Messages</Text>
         </View>
     );
 }

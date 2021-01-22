@@ -20,6 +20,8 @@ import {NavigationContainer} from "@react-navigation/native";
 import {createStackNavigator} from "@react-navigation/stack";
 import {MainScreen} from "./src/screens/MainScreen";
 import getHeaderTitle from "./src/navigation/getHeaderTitle";
+import getHeaderIconsRight from "./src/navigation/getHeaderIconsRight";
+import getHeaderIconsLeft from "./src/navigation/getHeaderIconsLeft";
 import {THEME} from "./src/theme";
 import Tabs from './src/navigation/Tabs'
 declare const global: { HermesInternal: null | {} };
@@ -45,7 +47,16 @@ const App = () => {
                         name={"MainScreen"}
                         component={Tabs}
                         options={({route}) => ({
-                            headerTitle: getHeaderTitle(route)
+                            headerTitle: getHeaderTitle(route),
+                            headerRight: () => (
+                                getHeaderIconsRight(route)
+                            ),
+                            headerTitleStyle: {
+                                fontSize: 20
+                            },
+                            headerLeft: () => (
+                                getHeaderIconsLeft(route)
+                            )
                         })}
                     />
                 </Stack.Navigator>

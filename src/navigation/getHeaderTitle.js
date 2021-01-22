@@ -8,6 +8,10 @@ function getHeaderTitle(route){
             return 'СДО ОГБПОУ "ТОМСКИЙ ТЕХНИКУМ ИНФОРМАЦИОННЫЙ ТЕХНОЛОГИЙ"'
         case 'Calendar':
             return 'Календарь'
+        case 'Notification':
+            return 'Уведомления'
+        case 'Message':
+            return 'Сообщения'
     }
 }
 

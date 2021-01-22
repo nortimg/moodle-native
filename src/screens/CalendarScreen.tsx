@@ -3,8 +3,8 @@ import {View, Text, StyleSheet} from "react-native";
 
 export const CalendarScreen: React.FC = ({}) => {
     return (
-        <View>
-            <Text>App</Text>
+        <View style={styles.center}>
+            <Text>Calendar</Text>
         </View>
     );
 }
