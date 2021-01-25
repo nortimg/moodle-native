@@ -19,12 +19,11 @@ import 'react-native-gesture-handler'
 import {NavigationContainer} from "@react-navigation/native";
 import {createStackNavigator} from "@react-navigation/stack";
 import {MainScreen} from "./src/screens/MainScreen";
-import getHeaderTitle from "./src/navigation/getHeaderTitle";
-import getHeaderIconsRight from "./src/navigation/getHeaderIconsRight";
-import getHeaderIconsLeft from "./src/navigation/getHeaderIconsLeft";
 import {THEME} from "./src/theme";
 import Tabs from './src/navigation/Tabs'
+
 declare const global: { HermesInternal: null | {} };
+import {ScreensObjectData} from "./src/navigation/ScreensObjectData";
 
 const App = () => {
     const [isReady, setIsReady] = useState(true)
@@ -34,33 +33,22 @@ const App = () => {
     }
     const Stack = createStackNavigator();
     return (
-            <NavigationContainer>
-                <Stack.Navigator
-                    initialRouteName={"MainScreen"}
-                    screenOptions={{
-                        headerStyle: {
-                            backgroundColor: THEME.MAIN_COLOR,
-                        },
-                        headerTintColor: '#fff',
-                    }}>
-                    <Stack.Screen
-                        name={"MainScreen"}
-                        component={Tabs}
-                        options={({route}) => ({
-                            headerTitle: getHeaderTitle(route),
-                            headerRight: () => (
-                                getHeaderIconsRight(route)
-                            ),
-                            headerTitleStyle: {
-                                fontSize: 20
-                            },
-                            headerLeft: () => (
-                                getHeaderIconsLeft(route)
-                            )
-                        })}
-                    />
-                </Stack.Navigator>
-            </NavigationContainer>
+        <NavigationContainer>
+            <Stack.Navigator
+                initialRouteName={"MainScreen"}
+                screenOptions={{
+                    headerStyle: {
+                        backgroundColor: THEME.MAIN_COLOR,
+                    },
+                    headerTintColor: '#fff',
+                }}>
+                <Stack.Screen
+                    name={"MainScreen"}
+                    component={Tabs}
+                    options={({route}) => (ScreensObjectData(route))}
+                />
+            </Stack.Navigator>
+        </NavigationContainer>
     );
 };
 
