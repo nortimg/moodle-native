@@ -9,21 +9,57 @@
  */
 import React, {useState} from 'react';
 import {
-    TouchableOpacity,
     StyleSheet,
     View,
-    Image,
 } from 'react-native';
 
 import 'react-native-gesture-handler'
 import {NavigationContainer} from "@react-navigation/native";
 import {createStackNavigator} from "@react-navigation/stack";
-import {MainScreen} from "./src/screens/MainScreen";
 import {THEME} from "./src/theme";
 import Tabs from './src/navigation/Tabs'
+import {ScreensObjectData} from "./src/navigation/ScreensObjectData";
+import {createDrawerNavigator} from "@react-navigation/drawer";
+import {CustomDrawerContent} from "./src/navigation/CustomDrawerContent";
+import {FilesScreen} from "./src/screens/FilesScreen";
+import {SettingScreen} from "./src/screens/SettingScreen";
 
 declare const global: { HermesInternal: null | {} };
-import {ScreensObjectData} from "./src/navigation/ScreensObjectData";
+
+const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
+
+const Main = () => (
+    <Stack.Navigator
+        initialRouteName={"MainScreen"}
+        screenOptions={{
+            headerStyle: {
+                backgroundColor: THEME.MAIN_COLOR,
+            },
+            headerTintColor: '#fff',
+        }}>
+        <Stack.Screen
+            name={"MainScreen"}
+            component={Tabs}
+            options={({route}) => ({...ScreensObjectData(route)})}
+        />
+        <Stack.Screen
+            name={"Files"}
+            component={FilesScreen}
+            options={() => ({
+                headerTitle: 'Файлы',
+            })}
+        />
+        <Stack.Screen
+            name={"Settings"}
+            component={SettingScreen}
+            options={() => ({
+                headerTitle: 'Настройки',
+            })}
+        />
+    </Stack.Navigator>
+)
+
 
 const App = () => {
     const [isReady, setIsReady] = useState(true)
@@ -31,23 +67,12 @@ const App = () => {
     if (!isReady) { // Если данные с сервера не загружены будем выводить Loading Component
         return <View>App</View>
     }
-    const Stack = createStackNavigator();
+
     return (
         <NavigationContainer>
-            <Stack.Navigator
-                initialRouteName={"MainScreen"}
-                screenOptions={{
-                    headerStyle: {
-                        backgroundColor: THEME.MAIN_COLOR,
-                    },
-                    headerTintColor: '#fff',
-                }}>
-                <Stack.Screen
-                    name={"MainScreen"}
-                    component={Tabs}
-                    options={({route}) => (ScreensObjectData(route))}
-                />
-            </Stack.Navigator>
+            <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props}/>}>
+                <Drawer.Screen name={'Main'} component={Main}/>
+            </Drawer.Navigator>
         </NavigationContainer>
     );
 };

@@ -1,10 +1,10 @@
 import React from 'react'
 import {View, Text, StyleSheet} from "react-native";
 
-export const MainScreen: React.FC = ({}) => {
+export const HomeScreen: React.FC = ({}) => {
     return (
         <View style={styles.center}>
-            <Text>App</Text>
+            <Text>ADSDSADASD</Text>
         </View>
     );
 }
