@@ -3,6 +3,7 @@ import {HomeScreen} from "../screens/HomeScreen";
 import {CalendarScreen} from "../screens/CalendarScreen";
 import {NotificationScreen} from "../screens/NotificationScreen";
 import {MessageScreen} from "../screens/MessageScreen";
+import {LoginScreen} from "../screens/LoginScreen";
 import {THEME} from "../theme";
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -48,6 +49,15 @@ const Tabs = () => {
                 options={{
                     tabBarIcon: ({color}) => (
                         <MaterialCommunityIcons name="forum" color={color} size={26}/>
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name={'Login'}
+                component={LoginScreen}
+                options={{
+                    tabBarIcon: ({color}) => (
+                        <MaterialCommunityIcons name="login" color={color} size={26}/>
                     ),
                 }}
             />

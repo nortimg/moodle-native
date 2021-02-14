@@ -23,6 +23,7 @@ import {createDrawerNavigator} from "@react-navigation/drawer";
 import {CustomDrawerContent} from "./src/navigation/CustomDrawerContent";
 import {FilesScreen} from "./src/screens/FilesScreen";
 import {SettingScreen} from "./src/screens/SettingScreen";
+import {LoginScreen} from './src/screens/LoginScreen';
 
 declare const global: { HermesInternal: null | {} };
 
@@ -57,12 +58,19 @@ const Main = () => (
                 headerTitle: 'Настройки',
             })}
         />
+        <Stack.Screen
+            name={"Login"}
+            component={LoginScreen}
+            options={() => ({
+                headerTitle: 'LoginScreen',
+            })}
+        />
     </Stack.Navigator>
 )
 
 
 const App = () => {
-    const [isReady, setIsReady] = useState(true)
+    const [isReady, setIsReady] = useState(true);
 
     if (!isReady) { // Если данные с сервера не загружены будем выводить Loading Component
         return <View>App</View>

@@ -36,6 +36,9 @@ export const ScreensObjectData = (route) => {
         },
         Files: {
             headerTitle: 'Файлы'
+        },
+        Login: {
+            headerTitle: 'Логин'
         }
     }
     return ScreensData[routeName];
